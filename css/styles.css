@@ -1,0 +1,11 @@
+.door-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.door {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
+
