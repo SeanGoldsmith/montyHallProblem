@@ -9,3 +9,12 @@
     background-color: black;
 }
 
+#button-cluster {
+    display: flex;
+    justify-content: center;
+}
+
+.reset {
+    display: block;
+    margin: auto;
+}
