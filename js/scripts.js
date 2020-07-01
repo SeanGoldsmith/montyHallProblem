@@ -22,12 +22,13 @@ function selectWinner(doorNumber) {
         var winningDoor = randomNumber(1,3);
         console.log(doorNumber + " chosen.",winningDoor + " wins : ");
         var switchDoor = selectRevealDoor(doorNumber,winningDoor);
+        console.log(doorNumber,winningDoor,switchDoor);
         insertButtons(doorNumber,winningDoor,switchDoor);
     }
 }
 
 function highlightSelectedDoor(chosenDoorNumber) {
-    doors[chosenDoorNumber-1].style.backgroundColor="blue";
+    // doors[chosenDoorNumber-1].style.backgroundColor="blue";
 }
 
 function randomNumber(minimum,maximum) {
@@ -53,22 +54,22 @@ function selectRevealDoor(chosenDoorNumber,winningDoorNumber) {
                 var choice = randomNumber(1,2);
                 if(choice==1) {
                     revealDoor(1);
-                    return 1;
+                    return 3;
                 }
                 else if (choice==2) {
                     revealDoor(3);
-                    return 3;
+                    return 1;
                 }
                 break;
             case 3:
                 var choice = randomNumber(1,2);
                 if(choice==1) {
                     revealDoor(1);
-                    return 1;
+                    return 2;
                 }
                 else if (choice==2) {
                     revealDoor(2);
-                    return 2;
+                    return 1;
                 }
                 break;
         }
@@ -90,8 +91,12 @@ function selectRevealDoor(chosenDoorNumber,winningDoorNumber) {
 }
 
 function revealDoor(doorNumber) {
-    doors[doorNumber-1].style.backgroundColor="red";
+    // doors[doorNumber-1].classList.remove('closed');
+    // doors[doorNumber-1].classList.add("goat");
+    const time = new Date().getTime();
+    doors[doorNumber-1].style.backgroundImage=`url("./img/goat-opening.gif?random=${time})`;
 }
+
 
 function insertButtons(chosenDoorNumber,winningDoorNumber,switchDoor) {
     buttonCluster.appendChild(createButton("Swap",() => {swap(switchDoor,winningDoorNumber)}));
@@ -107,15 +112,20 @@ function createButton(text,onClickFunc) {
 }
 
 function swap(switchDoorNumber,winningDoorNumber) {
+    const time = new Date().getTime();
     if(!choiceIsMade) {
         roundsSwap ++;
         if (switchDoorNumber==winningDoorNumber) {
             console.log("That's a bingo");
+            console.log(switchDoorNumber);
+            doors[switchDoorNumber-1].style.backgroundImage=`url("./img/car-opening.gif?random=${time})`;
             setElementText(document.getElementById("win-lose"),"You Win!");
             winsSwap++;
         }
         else {
             console.log("You lose.")
+            console.log(switchDoorNumber);
+            doors[switchDoorNumber-1].style.backgroundImage=`url("./img/bummer-goat.gif?random=${time})`;
             setElementText(document.getElementById("win-lose"),"You Lose!");;
         }
         choiceIsMade = true;
@@ -123,15 +133,18 @@ function swap(switchDoorNumber,winningDoorNumber) {
 }
 
 function stick(chosenDoorNumber,winningDoorNumber) {
+    const time = new Date().getTime();
     if(!choiceIsMade) {
         roundsStick ++;
         if(chosenDoorNumber==winningDoorNumber) {
             console.log("That's a bingo");
+            doors[chosenDoorNumber-1].style.backgroundImage=`url("./img/car-opening.gif?random=${time})`;
             winsStick++;
             setElementText(document.getElementById("win-lose"),"You Win!");
         }
         else {
             console.log("you lose.");
+            doors[chosenDoorNumber-1].style.backgroundImage=`url("./img/bummer-goat.gif?random=${time})`;
             setElementText(document.getElementById("win-lose"),"You Lose!");
         }
         choiceIsMade = true;
@@ -148,9 +161,11 @@ function calculateWinPercentage(won=0,played=0) {
 }
 
 function resetGame(doors) {
+    const time = new Date().getTime();
     if(choiceIsMade) {
         for(i= 0; i < doors.length; i++) {
-            doors[i].style.backgroundColor="black";
+            document.getElementById(`door${i+1}`).style="";
+            document.getElementById(`door${i+1}`).style.backgroundImage=`url("./img/closed-door.gif?random="+${time})`;
             doorIsSelected = false;
             buttonCluster.innerHTML="";
         }
@@ -161,8 +176,21 @@ function resetGame(doors) {
     }
 }
 
+function explain() {
+    const overlay = document.getElementById("overlay");
+    overlay.style.display="flex";
+    setTimeout(() => {
+        overlay.style.opacity="1";
+    },100);
+}
 
- 
+function closeOverlay() {
+    const overlay = document.getElementById("overlay");
+    overlay.style.opacity="0";
+    setTimeout(() => {
+        overlay.style.display="none";
+    },333);   
+}
 
 
 

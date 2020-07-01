@@ -7,6 +7,20 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="overlay">
+        <div  id="get-out-button" onclick="closeOverlay()">
+            <span>X</span>
+        </div>
+
+        <div id="explain">
+            <h1>What is this, anyway?</h1>
+            <p>This  project  is  meant  to  illustrate  the  Monty  Hall  Problem.
+                 If  you  are  not  familiar,  I  recommend  looking  into  it <a href="https://en.wikipedia.org/wiki/Monty_Hall_problem"> here</a>.
+                Most  people  find  the  statistics  relating  to  this  problem  quite  unintuitive,  myself  included.
+                I  thought  it  would  be  fun  to  model  the  game  and  track  the  results!
+            </p>
+        </div>
+    </div>
     <div class="door-container">
         <div id="door1" class="door" onclick="selectWinner(1)">
 
@@ -22,10 +36,17 @@
         
     </div>
     <button onclick="resetGame(doors)" class="reset">reset</button>
-    <h1 id="win-lose"></h1>
-    <h1 id="stick-percentage"></h1>
-    <h1 id="swap-percentage"></h1>
+    <div id="centered-text">
+        <h1 id="win-lose"></h1>
+        <h1 id="stick-label">Stick Win Percentage</h1>
+        <h1 id="stick-percentage">0</h1>
+        <h1 id="swap-label">Swap Win Percentage</h1>
+        <h1 id="swap-percentage">0</h1>
+    </div>
     
+    
+    <button id="info-button" onclick="explain()">What is this?</button>
+
     <script src="js/chance.js"></script>
     <script src="js/scripts.js"></script>
 </body>
