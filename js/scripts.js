@@ -157,7 +157,7 @@ function setElementText (elem,text) {
 }
 
 function calculateWinPercentage(won=0,played=0) {
-    return (won/played)*100;
+    return Math.round((won/played)*100);
 }
 
 function resetGame(doors) {
