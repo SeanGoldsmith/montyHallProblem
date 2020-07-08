@@ -138,6 +138,10 @@ button:hover {
 }
 
 @media screen and (max-width: 1200px) {
+    button {
+        font-size: 1.5em;
+    }
+    
     .door {
       width: 325px;
       height: 325px;
@@ -146,7 +150,7 @@ button:hover {
 
 @media screen and (max-width: 800px), screen and (max-height:850px)  {
     button {
-        font-size: 1.5em;
+        font-size: 1em;
     }
 
     h1 {
@@ -168,7 +172,8 @@ button:hover {
 
     #info-button {
         width: 150px;
-        height: 75px;
+        height: 60px;
+        font-size: 1em;
         margin-right: -75px;
     }
     
