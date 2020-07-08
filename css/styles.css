@@ -137,14 +137,14 @@ button:hover {
     padding: 50px;
 }
 
-@media only screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
     .door {
       width: 325px;
       height: 325px;
     }
   }
 
-@media only screen and (max-width: 800px) {
+@media screen and (max-width: 800px), screen and (max-height:850px)  {
     button {
         font-size: 1.5em;
     }
